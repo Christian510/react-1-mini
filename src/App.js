@@ -21,7 +21,7 @@ class App extends Component {
     this.setState({name: value});
   }
 
-  updateFriend() {
+  addFriend() {
     const { friends, picture, name } = this.state;
     
     let newFriends = friends.slice();
@@ -32,17 +32,26 @@ class App extends Component {
   
   
   render() {
-    const friends;
+    const friends = this.state.friends.map((friend, i) => (
     
+    <div key={`friend-${ i }-${ friend.name }` }>
+      <img src={ friend.name } width="100px" alt="bla"></img>
+      <span></span>
+    </div>
+    
+    ));
+
     return (
       <div>
         <span>Picture</span>
         <input onChange={( e ) => this.updatePicture(e.target.value)} value={this.state.picture} />
 
         <span>Name</span>
-        <input onChange={( e ) => this.updateName(e.target.value)} value={this.state.name} />
+        <input onChange={ ( e ) => this.updateName( e.target.value )} value={this.state.name} />
 
-          <button onClick={() => this.updateFriend()} >Add Friend</button>
+          <button onClick={ () => this.addFriend() }>Add Friend</button>
+
+          { friends }
       </div>
     );
   }
@@ -52,15 +61,15 @@ export default App;
 
 
 // Step 7
-// In this step, we'll add a way to see our list of friends on the DOM by mapping through the friends array on state.
+// * In this step, we'll add a way to see our list of friends on the DOM by mapping through the friends array on state.
 
-// Just above the return() statement, in the render method, create a new const variable called friends:
-// Map through the friends array on state to render a div element that contains an img and a span element.
-// The img element's src property should equal the value of the friend's picture.
-// Optionally you can control the maximum width/height by using the width/height propertys on the img element.
-// The span element should display the friend's name.
-// Be sure to assign a key on the parent div. This is a requirement from React.
-// Just below the Add Friend button, use {} to break out of JSX, and render the new friends variable.
+// * Just above the return() statement, in the render method, create a new const variable called friends:
+// * Map through the friends array on state to render a div element that contains an img and a span element.
+// * The img element's src property should equal the value of the friend's picture.
+// * Optionally you can control the maximum width/height by using the width/height propertys on the img element.
+// * The span element should display the friend's name.
+// * Be sure to assign a key on the parent div. This is a requirement from React.
+// * Just below the Add Friend button, use {} to break out of JSX, and render the new friends variable.
 
 // Step 6
 // * Underneath the constructor method, create a new method called updatePicture:
